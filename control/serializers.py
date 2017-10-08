@@ -10,11 +10,23 @@ __all__ = ('ServiceSerializer','AreaSerializer', 'ItemSerializer', 'UserSerializ
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('username',)
+        fields = (
+        	'id',
+        	#'password',
+        	#'is_superuser',
+        	#'username',
+        	#'first_name',
+        	#'last_name',
+        	#'email',
+        	#'is_active',
+        	#'date_joined',
+        	#'last_login'
+    	)
 
 
 class ServiceSerializer(serializers.HyperlinkedModelSerializer):
     created_by = UserSerializer()
+
     class Meta:
         model = control_models.Service
         fields = ('name', 'created_by', 'date_created', 'date_modified')
@@ -23,6 +35,7 @@ class ServiceSerializer(serializers.HyperlinkedModelSerializer):
 class AreaSerializer(serializers.HyperlinkedModelSerializer):
     created_by = UserSerializer()
     service = ServiceSerializer()
+
     class Meta:
         model = control_models.Area
         fields = ('name', 'service', 'created_by', 'date_created', 'date_modified')
@@ -31,6 +44,7 @@ class AreaSerializer(serializers.HyperlinkedModelSerializer):
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
     created_by = UserSerializer()
     area = AreaSerializer()
+
     class Meta:
         model = control_models.Item
         fields = ('name', 'area', 'created_by', 'date_created', 'date_modified')

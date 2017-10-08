@@ -20,5 +20,5 @@ django 1.8.x
 
 
 lista de pendientes y mejoras
-pendiente mostrar en rest api las relaciones de usuario
-y hacer que en la operación de eliminar sólo asigne la flag deleted a True
+hacer transaccional la operación de borrado
+generar un pequeño fron end
