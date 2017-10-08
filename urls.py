@@ -17,8 +17,10 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+from control import urls as control_urls
 
 urlpatterns = [
+    url(r'^api/', include(control_urls, namespace='api-control', app_name='control')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

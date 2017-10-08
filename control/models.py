@@ -3,6 +3,8 @@ from __future__ import (unicode_literals, print_function)
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
+__all__ = ('Service', 'Area', 'Item')
+
 @python_2_unicode_compatible
 class Service(models.Model):
     name = models.CharField(max_length=64)
