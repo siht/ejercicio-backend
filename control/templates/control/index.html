@@ -7,8 +7,15 @@
 {% block inner_content %}
 {% verbatim %}
 <div ng-app="myApp">
+	<div ng-controller="ServiceShowCtrl">
+		{{ servicio }}
+	</div>
 	<div ng-controller="ServiceIndexCtrl">
-		{{ servicios.results }}
+		<ul>
+			<li ng-repeat="servicio in servicios.results">
+				{{ $index }} {{ servicio }}
+			</li>
+		</ul>
 	</div>
 </div>
 {% endverbatim %}
@@ -25,10 +32,15 @@
 
 	app.controller("ServiceIndexCtrl", function($scope, Service) {
 	  	Service.query(function(data) {
-	  	console.log(data);
-	    $scope.servicios = data;
-    });
-});
+		    $scope.servicios = data;
+    	});
+	});
+
+	app.controller("ServiceShowCtrl", function($scope, Service) {
+		Service.get({ id: 7 }, function(data) {
+			$scope.servicio = data;
+		});
+	});
 })()
 </script>
 {% endblock js %}
