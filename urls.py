@@ -35,3 +35,6 @@ if settings.DEBUG:
 else:
     from django.conf.urls.static import static
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = 'general.views.view_404'
+handler500 = 'general.views.view_500'
