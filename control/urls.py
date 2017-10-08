@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-from django.conf.urls import url, include
-from control.routers import router
+
+from django.conf.urls import url
+from control import views as control_views
 
 __all__ = ('urlpatterns',)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^$', control_views.index, name='index'),
 ]
