@@ -14,26 +14,23 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ServiceSerializer(serializers.HyperlinkedModelSerializer):
-    #creted_by = UserSerializer()
+    created_by = UserSerializer()
     class Meta:
         model = control_models.Service
-        #fields = ('name', 'created_by', 'date_created', 'date_modified')
-        fields = ('name', 'date_created', 'date_modified')
+        fields = ('name', 'created_by', 'date_created', 'date_modified')
 
 
 class AreaSerializer(serializers.HyperlinkedModelSerializer):
-    #creted_by = UserSerializer()
+    created_by = UserSerializer()
     service = ServiceSerializer()
     class Meta:
         model = control_models.Area
-        #fields = ('name', 'service', 'created_by', 'date_created', 'date_modified')
-        fields = ('name', 'service', 'date_created', 'date_modified')
+        fields = ('name', 'service', 'created_by', 'date_created', 'date_modified')
 
 
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
-    #creted_by = UserSerializer()
+    created_by = UserSerializer()
     area = AreaSerializer()
     class Meta:
         model = control_models.Item
-        #fields = ('name', 'area', 'created_by', 'date_created', 'date_modified')
-        fields = ('name', 'area', 'date_created', 'date_modified')
+        fields = ('name', 'area', 'created_by', 'date_created', 'date_modified')
