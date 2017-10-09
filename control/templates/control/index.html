@@ -11,8 +11,11 @@
 		{{ servicio }}
 	</div>
 	<div ng-controller="ServiceIndexCtrl">
+		count {{ servicios[0] }}
+		previous {{ servicios[1] }}
+		next {{ servicios[2] }}
 		<ul>
-			<li ng-repeat="servicio in servicios.results">
+			<li ng-repeat="servicio in servicios[3]">
 				{{ $index }} {{ servicio }}
 			</li>
 		</ul>
@@ -26,14 +29,41 @@
 (function(){
 	var app = angular.module('myApp', ['ngResource']);
 
+	//app.config(['$qProvider', function ($qProvider) {
+	//    $qProvider.errorOnUnhandledRejections(false);
+	//}]);
+
 	app.factory("Service", function($resource) {
-	  return $resource("/api/services/:id");
+		return $resource(
+			"/api/services/:id",
+			null,
+			{
+				query:{
+					method: 'GET',
+					isArray: true,
+					transformResponse: function(data) {
+						return [
+							angular.fromJson(data).count,
+							angular.fromJson(data).previous,
+							angular.fromJson(data).next,
+							angular.fromJson(data).results
+						];
+					}
+				}
+			}
+		);
 	});
 
 	app.controller("ServiceIndexCtrl", function($scope, Service) {
-	  	Service.query(function(data) {
-		    $scope.servicios = data;
-    	});
+	  	Service.query(
+	  		function(data) {
+		    	$scope.servicios = data;
+    		},
+    		function(error){
+    			console.log(error);
+    		}
+		)
+    	;
 	});
 
 	app.controller("ServiceShowCtrl", function($scope, Service) {
