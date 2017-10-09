@@ -42,15 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'registration',
-    #'djangobower',
     'general',
     'control',
 )
-
-#BOWER_INSTALLED_APPS = (
-#    'jquery#1.9',
-#    'underscore',
-#)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

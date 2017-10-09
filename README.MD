@@ -21,4 +21,4 @@ django 1.8.x
 
 lista de pendientes y mejoras
 hacer transaccional la operación de borrado
-generar un pequeño fron end
+realizar las operaciones de cada api en el front
