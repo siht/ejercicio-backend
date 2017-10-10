@@ -1,11 +1,16 @@
 Examen de evaluación para peopleOne
+José Carlos Tzompantzi de Jesús
 
 Se usa una arquitectura monolítica
 
 Cómo instalar
 Sobre un python2.7.x ejecutar pip -r [archivo requirements]
-Para inicializar la aplicación se debe ejecutar primero dos comandos:
+Para inicializar la aplicación se debe ejecutar primero tres comandos:
+
+python manage.py migrate --settings [settings que van a ocupar (default: desarrollo)]
+
 python manage.py createsuperuser --settings [settings que van a ocupar (default: desarrollo)]
+
 python manage.py population_script --settings [settings que van a ocupar (default: desarrollo)]
 
 en la url existe una url llamada /api
